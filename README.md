@@ -10,9 +10,9 @@ Edit your `settings.py` file to specify a location for the GnuPG home directory 
 
 ## Usage
 
-You can send keys to the key server in the usual way, e.g. `gpg2 --keyserver https://keys.example.com/ --send-keys  2E22230EBB27C5981EBB6D1EF4CA4E9697B0282E` however they will not be immediately reflected in the key index.
+You can send keys to the key server in the usual way, e.g. on a client machine `gpg2 --keyserver https://keys.example.com/ --send-keys  2E22230EBB27C5981EBB6D1EF4CA4E9697B0282E` however this new key will not be immediately reflected in the key index.
 
-To allow a key to be requested from the server you must first run e.g. `gpg2 --edit-key 2E22230EBB27C5981EBB6D1EF4CA4E9697B0282E` and change the "ownertrust" value of the key (by entering `trust`) to "fully".
+To allow a key to be requested from the server you must first log in to the key server and run e.g. `gpg2 --homedir /path/to/application/gpg --edit-key 2E22230EBB27C5981EBB6D1EF4CA4E9697B0282E` and change the "ownertrust" value of the key (by entering `trust`) to "fully". Similarly to remove a key either de-trust it or just remove it from the keystore.
 
 It is recommended you combine this with a "CA key" that also signs all the keys you currently trust in your environment, and invite your users to import and ownertrust just the "CA key". This way they needn't manage their own local ownertrust, only the operator of the "CA" needs to make changes (assuming the users periodically update their keystores).
 
