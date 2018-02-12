@@ -1,0 +1,8 @@
+td, th {
+    vertical-align: top;
+    text-align: left;
+}
+
+th {
+    padding-right: 15px;
+}

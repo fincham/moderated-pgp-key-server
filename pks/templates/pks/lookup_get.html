@@ -1,0 +1,9 @@
+{% extends "pks/base.html" %}
+
+{% load humanize %}
+{% load pks_extras %}
+{% block content %}
+    <h1>Key '0x{{ key.keyid }}'</h1>
+    <p>{{ key.uids|join:', ' }} {{ key.length }} bit {{ key.algo|key_algo|first_word }}, expires {{ key.expires|timestamp_to_datetime|default:'never' }}.</p>
+    <pre>{{ key_ascii }}</pre>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "pks/base.html" %}
+
+{% block content %}
+    <h1>Keyserver</h1>
+    <form action="lookup" method="get">
+        Search: <input type="text" name="search">
+        <input type="submit">
+    </form>
+{% endblock %}

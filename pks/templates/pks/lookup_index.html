@@ -1,0 +1,29 @@
+{% extends "pks/base.html" %}
+
+{% load humanize %}
+{% load pks_extras %}
+{% block content %}
+    {% if search %}
+        <h1>Keys matching '{{ search }}'</h1>
+    {% else %}
+        <h1>All keys</h1>
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>UIDs</th><th>Length</th><th>Type</th><th>Key ID</th><th>Expires</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key in keys %}
+                    <tr>
+                        <td>{{ key.uids|join:'<br>' }}</td>
+                        <td>{{ key.length }}</td>
+                        <td>{{ key.algo|key_algo|first_word }}</td>
+                        <td><a href="lookup?op=get&search=0x{{ key.keyid }}">0x{{ key.keyid }}</a></td>
+                        <td>{{ key.expires|timestamp_to_datetime|default:'Never' }}</td>
+                    </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
